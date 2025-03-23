@@ -104,6 +104,11 @@
                     
                     const characterData = await response.json();
                     
+                    // Sort characters alphabetically by name
+                    characterData.sort((a, b) => {
+                        return a.name.localeCompare(b.name);
+                    });
+                    
                     // Render each character
                     characterData.forEach(character => {
                         const characterCard = createCharacterCard(character);
