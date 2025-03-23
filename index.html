@@ -49,6 +49,21 @@
         h2 { color: var(--secondary); margin-top: 0; }
         .config { margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; }
         code { background: #f4f4f4; padding: 0.3em 0.5em; border-radius: 4px; }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+        
+        .error-message {
+            background: #ffdddd;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -57,31 +72,8 @@
         <p>Concise profiles from Liu Cixin's masterpiece</p>
     </div>
 
-    <div class="grid">
-        <div class="card">
-            <h2>Luo Ji</h2>
-            <p>Astronomer turned Wallfacer who develops cosmic sociology theory. Initially reluctant hero evolves into humanity's strategic thinker[1][3][10]</p>
-        </div>
-
-        <div class="card">
-            <h2>Shi Qiang</h2>
-            <p>Practical police officer turned security chief, provides grounded perspective amid cosmic threats. Luo Ji's loyal protector[1][4][10]</p>
-        </div>
-
-        <div class="card">
-            <h2>Zhang Beihai</h2>
-            <p>Space Force officer who secretly prepares interstellar escape. Master strategist hiding defeatism behind triumphalist facade[1][10]</p>
-        </div>
-
-        <div class="card">
-            <h2>Ye Wenjie</h2>
-            <p>ETO founder who shares cosmic sociology principles. Complex figure bridging human/Trisolaris communication[1][10]</p>
-        </div>
-
-        <div class="card">
-            <h2>Zhuang Yan</h2>
-            <p>Artist and Luo Ji's idealized companion. Becomes emotional leverage in Wallfacer Project[1][2][10]</p>
-        </div>
+    <div id="character-container" class="grid">
+        <div class="loading">Loading character data...</div>
     </div>
 
     <div class="config">
@@ -93,5 +85,61 @@
             <li>Site deploys to: <code>https://&lt;username&gt;.github.io</code></li>
         </ol>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const characterContainer = document.getElementById('character-container');
+            
+            async function fetchCharacterData() {
+                try {
+                    // Clear loading message
+                    characterContainer.innerHTML = '';
+                    
+                    // Fetch character data
+                    const response = await fetch('./characters.json');
+                    
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch characters: ${response.status}`);
+                    }
+                    
+                    const characterData = await response.json();
+                    
+                    // Render each character
+                    characterData.forEach(character => {
+                        const characterCard = createCharacterCard(character);
+                        characterContainer.appendChild(characterCard);
+                    });
+                    
+                } catch (error) {
+                    console.error('Error loading character data:', error);
+                    
+                    const errorElement = document.createElement('div');
+                    errorElement.className = 'error-message';
+                    errorElement.textContent = `Failed to load character data: ${error.message}`;
+                    characterContainer.innerHTML = '';
+                    characterContainer.appendChild(errorElement);
+                }
+            }
+            
+            function createCharacterCard(character) {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                const nameElement = document.createElement('h2');
+                nameElement.textContent = character.name;
+                
+                const descriptionElement = document.createElement('p');
+                descriptionElement.textContent = character.description;
+                
+                card.appendChild(nameElement);
+                card.appendChild(descriptionElement);
+                
+                return card;
+            }
+            
+            // Start loading character data
+            fetchCharacterData();
+        });
+    </script>
 </body>
 </html>
