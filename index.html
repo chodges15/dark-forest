@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dark Forest Character Compendium</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --light: #ecf0f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui;
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 2rem;
+            margin: -2rem -2rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        h2 { color: var(--secondary); margin-top: 0; }
+        .config { margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; }
+        code { background: #f4f4f4; padding: 0.3em 0.5em; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>The Dark Forest Character Guide</h1>
+        <p>Concise profiles from Liu Cixin's masterpiece</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>Luo Ji</h2>
+            <p>Astronomer turned Wallfacer who develops cosmic sociology theory. Initially reluctant hero evolves into humanity's strategic thinker[1][3][10]</p>
+        </div>
+
+        <div class="card">
+            <h2>Shi Qiang</h2>
+            <p>Practical police officer turned security chief, provides grounded perspective amid cosmic threats. Luo Ji's loyal protector[1][4][10]</p>
+        </div>
+
+        <div class="card">
+            <h2>Zhang Beihai</h2>
+            <p>Space Force officer who secretly prepares interstellar escape. Master strategist hiding defeatism behind triumphalist facade[1][10]</p>
+        </div>
+
+        <div class="card">
+            <h2>Ye Wenjie</h2>
+            <p>ETO founder who shares cosmic sociology principles. Complex figure bridging human/Trisolaris communication[1][10]</p>
+        </div>
+
+        <div class="card">
+            <h2>Zhuang Yan</h2>
+            <p>Artist and Luo Ji's idealized companion. Becomes emotional leverage in Wallfacer Project[1][2][10]</p>
+        </div>
+    </div>
+
+    <div class="config">
+        <h2>GitHub Pages Configuration</h2>
+        <ol>
+            <li>Create repository: <code>&lt;username&gt;.github.io</code></li>
+            <li>Add this <code>index.html</code> file</li>
+            <li>Enable in Settings → Pages → Branch: main</li>
+            <li>Site deploys to: <code>https://&lt;username&gt;.github.io</code></li>
+        </ol>
+    </div>
+</body>
+</html>
